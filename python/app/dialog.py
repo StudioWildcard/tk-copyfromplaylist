@@ -10,8 +10,6 @@
 
 import sgtk
 import os
-import sys
-import threading
 from . import copy_from_playlist
 from pathlib import Path
 
