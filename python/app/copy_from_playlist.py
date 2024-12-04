@@ -12,7 +12,14 @@ import sgtk
 
 from .ui.dialog import Ui_Dialog
 from tank.platform.qt import QtCore, QtGui
-from tank.platform.qt5 import QtWidgets
+from sgtk.platform.qt import QtCore
+for name, cls in QtCore.__dict__.items():
+    if isinstance(cls, type): globals()[name] = cls
+
+from sgtk.platform.qt import QtGui
+for name, cls in QtGui.__dict__.items():
+    if isinstance(cls, type): globals()[name] = cls
+#from tank.platform.qt5 import QtWidgets
 
 # standard toolkit logger
 logger = sgtk.platform.get_logger(__name__)
@@ -29,7 +36,7 @@ class PlaylistPacker():
         self.projectName = projectName
         self.localStorage = localStorage
         self.msgCallback = msgCallback
-        self.app = QtWidgets.QApplication.instance()
+        self.app = QApplication.instance()
         self.app.processEvents()
 
         self.ui = Ui_Dialog()

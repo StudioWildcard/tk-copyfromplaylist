@@ -6,16 +6,22 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from sgtk.platform.qt import QtCore
+for name, cls in QtCore.__dict__.items():
+    if isinstance(cls, type): globals()[name] = cls
 
-from tank.platform.qt import QtCore, QtGui
-from tank.platform.qt5 import QtWidgets
+from sgtk.platform.qt import QtGui
+for name, cls in QtGui.__dict__.items():
+    if isinstance(cls, type): globals()[name] = cls
+#from tank.platform.qt import QtCore, QtGui
+#from tank.platform.qt5 import QtWidgets
 #from qgis.PyQt.QtWidgets import QVBoxLayout
 from . import separator
 
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
-        app = QtWidgets.QApplication.instance()
+        app = QApplication.instance()
         app.processEvents()
 
         Dialog.setObjectName("Dialog")
@@ -48,7 +54,7 @@ class Ui_Dialog(object):
         self.playlistLabel = QtGui.QLabel(Dialog)
         self.playlistLabel.setText("Playlists")
 
-        self.playlistSelection = QtWidgets.QListWidget()
+        self.playlistSelection = QListWidget()
         self.playlistSelection.setToolTip('Select a playlist')
 
         self.playlistLayout.addWidget(self.playlistLabel)
@@ -124,7 +130,7 @@ class Ui_Dialog(object):
         self.progressLabel = QtGui.QLabel(Dialog)
         self.progressLabel.setText("Progress")
 
-        self.status_dialog = QtWidgets.QTextBrowser(Dialog)
+        self.status_dialog = QTextBrowser(Dialog)
         self.status_dialog.verticalScrollBar().setValue(self.status_dialog.verticalScrollBar().maximum())
         self.status_dialog.setMinimumHeight(200)
 
